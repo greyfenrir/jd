@@ -68,5 +68,21 @@ def minimal_distance(word1, word2):
             cur_j -= 1
 
 
+def min_dist(w1, w2):
+    if w1 == w2:
+        return 0
+    elif not w1:
+        return len(w2)
+    elif not w2:
+        return len(w1)
+    elif w1[0] == w2[0]:
+        return min_dist(w1[1:], w2[1:])
+    else:
+        deletion = min_dist(w1[1:], w2)
+        replacement = min_dist(w1[1:], w2[1:])
+        insertion = min_dist(w1, w2[1:])
+        return 1 + min(deletion, replacement, insertion)
+
+
 if __name__ == '__main__':
     minimal_distance(sys.argv[1], sys.argv[2])

@@ -7,17 +7,26 @@ def insert_into_array(arr, index, new_item):
 
 def minimal_distance(word1, word2):
     def get_dp(i, j):
-        if i < 0 or j < 0:
+        if i < 0 or j < 0:  # both words are finished
             return 0
-        if i < 0:
+        if i < 0:           # word2 is finished, deletion of j+1 (rest of word1) chars
             return j + 1
-        if j < 0:
+        if j < 0:           # word1 is finished, insertion of i+1 (rest of word2) chars
             return i + 1
-        return dp[i][j]
+        return dp[i][j]     # check in progress..
 
     n = len(word1)
     m = len(word2)
     dp = [[0 for _ in range(n)] for _ in range(m)]
+
+    """
+    for 'word', 'word1':
+       [[0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]]
+    """
 
     for i in range(n):
         for j in range(m):

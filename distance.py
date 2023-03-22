@@ -22,8 +22,8 @@ def minimal_distance(word1, word2):
     for i in range(lines):
         for j in range(rows):
             dp[i][j] = min(
-                get_dp(i - 1, j) + 1,   # remove first char from w1 (deletion)
-                get_dp(i, j - 1) + 1,   # remove first char from w1 (insertion)
+                get_dp(i - 1, j) + 1,   # remove last char from w1 (deletion)
+                get_dp(i, j - 1) + 1,   # remove last char from w2 (insertion)
                 get_dp(i - 1, j - 1) + (0 if word1[i] == word2[j] else 1)   # replacement or just moving forward
             )
 

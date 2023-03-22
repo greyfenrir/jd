@@ -15,12 +15,12 @@ def minimal_distance(word1, word2):
             return i + 1
         return dp[i][j]     # check in progress..
 
-    n = len(word1)
-    m = len(word2)
-    dp = [[0 for _ in range(n)] for _ in range(m)]
+    lines = len(word1)
+    rows = len(word2)
+    dp = [[0 for _ in range(rows)] for _ in range(lines)]
 
     """
-    for 'word', 'word1':
+    for 'word1', 'word':
        [[0, 0, 0, 0],
         [0, 0, 0, 0],
         [0, 0, 0, 0],
@@ -28,18 +28,18 @@ def minimal_distance(word1, word2):
         [0, 0, 0, 0]]
     """
 
-    for i in range(n):
-        for j in range(m):
+    for i in range(lines):
+        for j in range(rows):
             dp[i][j] = min(
                 get_dp(i - 1, j) + 1,
                 get_dp(i, j - 1) + 1,
                 get_dp(i - 1, j - 1) + (0 if word1[i] == word2[j] else 1)
             )
 
-    distance = get_dp(n - 1, m - 1)
+    distance = get_dp(lines - 1, rows - 1)
     print(distance)
-    cur_i = n - 1
-    cur_j = m - 1
+    cur_i = lines - 1
+    cur_j = rows - 1
     cur_word = list(word2)
 
     print(''.join(cur_word))

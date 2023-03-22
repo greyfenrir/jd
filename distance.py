@@ -37,7 +37,7 @@ def minimal_distance(word1, word2):
             )
 
     distance = get_dp(lines - 1, rows - 1)
-    print(distance)
+    res = distance
     cur_i = lines - 1
     cur_j = rows - 1
     cur_word = list(word2)
@@ -67,6 +67,8 @@ def minimal_distance(word1, word2):
             cur_i -= 1
             cur_j -= 1
 
+    return res
+
 
 def min_dist(w1, w2):
     if w1 == w2:
@@ -85,4 +87,5 @@ def min_dist(w1, w2):
 
 
 if __name__ == '__main__':
-    minimal_distance(sys.argv[1], sys.argv[2])
+    result = minimal_distance(sys.argv[1], sys.argv[2])
+    print(f'Min distance: {result}')

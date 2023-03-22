@@ -7,7 +7,7 @@ def insert_into_array(arr, index, new_item):
 
 def minimal_distance(word1, word2):
     def get_dp(i, j):
-        if i < 0 or j < 0:  # both words are finished
+        if i < 0 and j < 0:  # both words are finished
             return 0
         if i < 0:           # word2 is finished, deletion of j+1 (rest of word1) chars
             return j + 1
@@ -19,25 +19,17 @@ def minimal_distance(word1, word2):
     rows = len(word2)
     dp = [[0 for _ in range(rows)] for _ in range(lines)]
 
-    """
-    for 'word1', 'word':
-       [[0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0]]
-    """
-
     for i in range(lines):
         for j in range(rows):
             dp[i][j] = min(
-                get_dp(i - 1, j) + 1,
-                get_dp(i, j - 1) + 1,
-                get_dp(i - 1, j - 1) + (0 if word1[i] == word2[j] else 1)
+                get_dp(i - 1, j) + 1,   # remove first char from w1 (deletion)
+                get_dp(i, j - 1) + 1,   # remove first char from w1 (insertion)
+                get_dp(i - 1, j - 1) + (0 if word1[i] == word2[j] else 1)   # replacement or just moving forward
             )
 
     distance = get_dp(lines - 1, rows - 1)
-    res = distance
+
+    result = distance
     cur_i = lines - 1
     cur_j = rows - 1
     cur_word = list(word2)
@@ -67,7 +59,7 @@ def minimal_distance(word1, word2):
             cur_i -= 1
             cur_j -= 1
 
-    return res
+    return result
 
 
 def min_dist(w1, w2):
@@ -87,5 +79,5 @@ def min_dist(w1, w2):
 
 
 if __name__ == '__main__':
-    result = minimal_distance(sys.argv[1], sys.argv[2])
-    print(f'Min distance: {result}')
+    min_d = minimal_distance(sys.argv[1], sys.argv[2])
+    print(f'Min distance: {min_d}')

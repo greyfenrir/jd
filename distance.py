@@ -1,10 +1,6 @@
 import sys
 
 
-def insert_into_array(arr, index, new_item):
-    return arr[:index] + [new_item] + arr[index:1]
-
-
 def minimal_distance(word1, word2):
     def get_dp(i, j):
         if i < 0 and j < 0:  # both words are finished
@@ -40,12 +36,12 @@ def minimal_distance(word1, word2):
         insertion = get_dp(cur_i - 1, cur_j)
         substitution = get_dp(cur_i - 1, cur_j - 1)
         if deletion < distance:
-            cur_word[cur_j] = ''
+            del cur_word[cur_j]
             cur_j -= 1
             distance = deletion
             print(''.join(cur_word))
         elif insertion < distance:
-            cur_word = insert_into_array(cur_word, cur_j + 1, word1[cur_i])
+            cur_word.insert(cur_j + 1, word1[cur_i])
             cur_i -= 1
             distance = insertion
             print(''.join(cur_word))
@@ -63,7 +59,7 @@ def minimal_distance(word1, word2):
 
 
 def min_dist(w1, w2):
-    # todo: don't calculate min_dist several times for the same input words, for that save result in table
+    # todo: don't calculate min_dist several times for the same input words, for that save results in cache table
     if w1 == w2:
         return 0
     elif not w1:

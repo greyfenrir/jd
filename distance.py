@@ -39,13 +39,7 @@ def minimal_distance(word1, word2):
         deletion = get_dp(cur_i, cur_j - 1)
         insertion = get_dp(cur_i - 1, cur_j)
         substitution = get_dp(cur_i - 1, cur_j - 1)
-        if substitution < distance:
-            cur_word[cur_j] = word1[cur_i]
-            cur_i -= 1
-            cur_j -= 1
-            distance = substitution
-            print(''.join(cur_word))
-        elif deletion < distance:
+        if deletion < distance:
             cur_word[cur_j] = ''
             cur_j -= 1
             distance = deletion
@@ -54,6 +48,12 @@ def minimal_distance(word1, word2):
             cur_word = insert_into_array(cur_word, cur_j + 1, word1[cur_i])
             cur_i -= 1
             distance = insertion
+            print(''.join(cur_word))
+        elif substitution < distance:
+            cur_word[cur_j] = word1[cur_i]
+            cur_i -= 1
+            cur_j -= 1
+            distance = substitution
             print(''.join(cur_word))
         else:
             cur_i -= 1

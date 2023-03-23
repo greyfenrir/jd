@@ -1,6 +1,8 @@
 from unittest.case import TestCase
 from distance import minimal_distance
 
+# from distance import min_dist as minimal_distance
+
 
 class TestDistance(TestCase):
     def test_the_same(self):

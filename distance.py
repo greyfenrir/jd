@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 
 def minimal_distance(word1, word2):
@@ -76,5 +76,10 @@ def min_dist(w1, w2):
 
 
 if __name__ == '__main__':
-    min_d = minimal_distance(sys.argv[1], sys.argv[2])
-    print(f'Min distance: {min_d}')
+    if len(argv) != 3:
+        print('Usage format: \n\t distance <word1> <word2>')
+        exit(1)
+    else:
+        min_d = minimal_distance(argv[1], argv[2])
+        print(f'Min distance: {min_d}')
+

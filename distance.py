@@ -63,6 +63,7 @@ def minimal_distance(word1, word2):
 
 
 def min_dist(w1, w2):
+    # todo: don't calculate min_dist several times for the same input words, for that save result in table
     if w1 == w2:
         return 0
     elif not w1:

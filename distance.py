@@ -9,9 +9,9 @@ def minimal_distance(word1, word2):
     def get_dp(i, j):
         if i < 0 and j < 0:  # both words are finished
             return 0
-        if i < 0:           # word2 is finished, deletion of j+1 (rest of word1) chars
+        if i < 0:           # word1 is finished, deletion of j+1 (rest of word2) chars
             return j + 1
-        if j < 0:           # word1 is finished, insertion of i+1 (rest of word2) chars
+        if j < 0:           # word2 is finished, insertion of i+1 (rest of word1) chars
             return i + 1
         return dp[i][j]     # check in progress..
 
